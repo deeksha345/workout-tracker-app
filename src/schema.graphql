@@ -1,0 +1,33 @@
+type Query {
+    getWorkout(id: ID!): Workout
+    listWorkouts: [Workout!]!
+}
+
+input NewExercise {
+    name: String!
+    numSets: Int!
+    holdTime: Int
+}
+
+type Mutation {
+    createWorkout(category: String!, exercises: [NewExercise!]!): Workout!
+    updateWorkout(id: ID!, category: String, exercises: [NewExercise]): Workout
+    deleteWorkout(id: ID!): Workout
+}
+
+type Workout {
+    id: ID!
+    category: String!
+    exercises: [Exercise!]!
+}
+
+type Exercise {
+    name: String!
+    numSets: Int!
+    holdTime: Int
+}
+
+# input LengthInput {
+#     duration: Int!
+#     unit: String!
+# }
