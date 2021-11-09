@@ -18,13 +18,15 @@ type Mutation {
 type Workout {
     id: ID!
     category: String!
-    exercises: [Exercise!]!
+    exercises: [Exercise!]! @relation(link: INLINE)
 }
 
 type Exercise {
+    id: ID!
     name: String!
     numSets: Int!
     holdTime: Int
+    owner: Workout
 }
 
 # input LengthInput {
