@@ -18,7 +18,7 @@ type Mutation {
 type Workout {
     id: ID!
     category: String!
-    exercises: [Exercise!]! @relation(link: INLINE)
+    exercises: [Exercise!]! 
 }
 
 type Exercise {

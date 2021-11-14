@@ -23,29 +23,34 @@ const prisma = new PrismaClient({
 async function main() {
     const newWorkout = await prisma.workout.create({
         data: {
-            category: 'Push',
-            exercises: {
-                create: [
-                  {
-                    name: "pushup",
-                    numSets: 5
-                  },
-                  {
-                    name: "headstand",
-                    numSets: 3,
-                    holdTime: 30
-                  }
-                ]
-            }
+          category: 'Pull',
+          exercises: {
+            create: [
+              {
+                name: "pullup",
+                numSets: 5
+              },
+              {
+                name: "row",
+                numSets: 5
+              }
+            ]
+          }
+        },
+        include: {
+          exercises: true
         }
     })
     console.log(newWorkout)
 
-    const allWorkouts = await prisma.workout.findMany()
-    console.log(allWorkouts.values)
-    allWorkouts.forEach(e => {
-        console.log(e.exercises)
+    const workouts = await prisma.workout.findMany({
+      include: {
+        exercises: true
+      }
     })
+    workouts.forEach(element => {
+      console.log(element)
+  });
 }
 
 main()
